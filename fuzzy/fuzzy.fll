@@ -1,0 +1,14 @@
+Engine: 
+InputVariable: X
+  enabled: true
+  range: -1.000 0.990
+  term: FarLeft ZShape -1.000 -0.264
+  term: MediumLeft Gaussian -0.503 0.179
+  term: Close Gaussian -0.005 0.159
+  term: MediumRight Gaussian 0.512 0.179
+  term: FarRight Sigmoid 0.711 11.005
+RuleBlock: 
+  enabled: true
+  conjunction: none
+  disjunction: none
+  activation: none

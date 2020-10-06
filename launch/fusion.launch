@@ -1,0 +1,39 @@
+<launch>
+  <node pkg="robot_localization" type="ekf_localization_node" name="ekf_se" clear_params="true">
+    <rosparam command="load" file="$(find fusion_pioneer_uav)/params/ekf_template.yaml" />
+
+   <!--  Placeholder for output topic remapping
+    <remap from="odometry/filtered" to=""/>
+    <remap from="accel/filtered" to=""/>
+    -->
+
+  </node>
+
+
+   <arg name="marker_size" default="4.4" />
+   <arg name="max_new_marker_error" default="0.08" />
+   <arg name="max_track_error" default="0.2" />
+   <arg name="cam_image_topic" default="/visionSensorData/image_rect" />
+   <arg name="cam_info_topic" default="/visionSensorData/camera_info" />
+   <arg name="output_frame" default="/Hexarotor" />
+
+   <node name="ar_track_alvar" pkg="ar_track_alvar" type="individualMarkersNoKinect" respawn="false" output="screen">
+           <param name="marker_size"           type="double" value="$(arg marker_size)" />
+           <param name="max_new_marker_error"  type="double" value="$(arg max_new_marker_error)" />
+           <param name="max_track_error"       type="double" value="$(arg max_track_error)" />
+           <param name="output_frame"          type="string" value="$(arg output_frame)" />
+           <remap from="camera_image"  to="$(arg cam_image_topic)" />
+           <remap from="camera_info"   to="$(arg cam_info_topic)" />
+   </node>
+
+   <node name="change_tf_name" pkg="fusion_pioneer_uav" type="fusion_pioneer_uav_change_tf_name" respawn="false" output="screen">
+   </node>
+
+   <node name="uav_tf_broadcaster" pkg="fusion_pioneer_uav" type="fusion_pioneer_uav_tf_ar_tracker" respawn="false" output="screen">
+   </node>
+   
+   <node name="pointConverter" pkg="fusion_pioneer_uav" type="fusion_pioneer_uav_point" respawn="false" output="screen">
+   </node>
+
+
+</launch>

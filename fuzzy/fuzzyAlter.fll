@@ -1,0 +1,84 @@
+Engine: 
+InputVariable: X
+  enabled: true
+  range: -1.000 0.990
+  term: FarLeft ZShape -1.000 -0.264
+  term: MediumLeft Gaussian -0.503 0.179
+  term: Close Gaussian -0.005 0.159
+  term: MediumRight Gaussian 0.512 0.179
+  term: FarRight Sigmoid 0.711 11.005
+InputVariable: Y
+  enabled: true
+  range: -1.000 0.990
+  term: FarLeft ZShape -1.000 -0.264
+  term: MediumLeft Gaussian -0.503 0.179
+  term: Close Gaussian -0.005 0.159
+  term: MediumRight Gaussian 0.512 0.179
+  term: FarRight Sigmoid 0.711 11.005
+InputVariable: Z
+  enabled: true
+  range: -1.000 0.990
+  term: FarLeft ZShape -1.000 -0.264
+  term: MediumLeft Gaussian -0.503 0.179
+  term: Close Gaussian -0.005 0.159
+  term: MediumRight Gaussian 0.512 0.179
+  term: FarRight Sigmoid 0.711 11.005
+OutputVariable: outX
+  enabled: true
+  range: -1.000 1.000
+  accumulation: AlgebraicSum
+  defuzzifier: Bisector 200
+  default: 0.000
+  lock-valid: false
+  lock-range: false
+  term: FarLeft ZShape -1.000 -0.264
+  term: MediumLeft Gaussian -0.503 0.179
+  term: Close Gaussian -0.005 0.159
+  term: MediumRight Gaussian 0.512 0.179
+  term: FarRight Sigmoid 0.711 11.005
+OutputVariable: outY
+  enabled: true
+  range: -1.000 1.000
+  accumulation: AlgebraicSum
+  defuzzifier: Bisector 200
+  default: 0.000
+  lock-valid: false
+  lock-range: false
+  term: FarLeft ZShape -1.000 -0.264
+  term: MediumLeft Gaussian -0.503 0.179
+  term: Close Gaussian -0.005 0.159
+  term: MediumRight Gaussian 0.512 0.179
+  term: FarRight Sigmoid 0.711 11.005
+OutputVariable: outZ
+  enabled: true
+  range: -1.000 1.000
+  accumulation: AlgebraicSum
+  defuzzifier: Bisector 200
+  default: 0.000
+  lock-valid: false
+  lock-range: false
+  term: FarLeft ZShape -1.000 -0.264
+  term: MediumLeft Gaussian -0.503 0.179
+  term: Close Gaussian -0.005 0.159
+  term: MediumRight Gaussian 0.512 0.179
+  term: FarRight Sigmoid 0.711 11.005
+RuleBlock: 
+  enabled: true
+  conjunction: AlgebraicProduct
+  disjunction: AlgebraicSum
+  activation: AlgebraicProduct
+  rule: if X is FarLeft then outX is FarRight
+  rule: if X is FarRight then outX is FarLeft
+  rule: if X is Close then outX is Close 
+  rule: if X is MediumRight then outX is MediumLeft 
+  rule: if X is MediumLeft then outX is MediumRight
+  rule: if Y is FarLeft then outY is FarRight
+  rule: if Y is FarRight then outY is FarLeft
+  rule: if Y is Close then outY is Close 
+  rule: if Y is MediumRight then outY is MediumLeft 
+  rule: if Y is MediumLeft then outY is MediumRight
+  rule: if Z is FarLeft then outZ is FarRight
+  rule: if Z is FarRight then outZ is FarLeft
+  rule: if Z is Close then outZ is Close 
+  rule: if Z is MediumRight then outZ is MediumLeft 
+  rule: if Z is MediumLeft then outZ is MediumRight
