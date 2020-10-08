@@ -136,12 +136,13 @@ include_directories(
 ## Declare a C++ executable
 ## With catkin_make all packages are built within a single CMake context
 ## The recommended prefix ensures that target names across packages don't collide
-add_executable(${PROJECT_NAME}_node src/fusion_pioneer_uav_node.cpp)
-add_executable(${PROJECT_NAME}_change_tf_name src/change_tf_name.cpp)
-add_executable(${PROJECT_NAME}_tf_ar_tracker src/tf_ar_tracker.cpp)
+#add_executable(${PROJECT_NAME}_node src/fusion_pioneer_uav_node.cpp)
+#add_executable(${PROJECT_NAME}_change_tf_name src/change_tf_name.cpp)
+#add_executable(${PROJECT_NAME}_tf_ar_tracker src/tf_ar_tracker.cpp)
 add_executable(${PROJECT_NAME}_point src/pointConverter.cpp)
 add_executable(${PROJECT_NAME}_uav src/uav.cpp)
 add_executable(${PROJECT_NAME}_odom_correct src/odom_correct.cpp)
+add_executable(${PROJECT_NAME}_pose src/pose_parametrization.cpp)
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
@@ -154,12 +155,13 @@ add_executable(${PROJECT_NAME}_odom_correct src/odom_correct.cpp)
 # add_dependencies(${PROJECT_NAME}_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
 ## Specify libraries to link a library or executable target against
- target_link_libraries(${PROJECT_NAME}_node  ${catkin_LIBRARIES} )
- target_link_libraries(${PROJECT_NAME}_change_tf_name  ${catkin_LIBRARIES} )
- target_link_libraries(${PROJECT_NAME}_tf_ar_tracker  ${catkin_LIBRARIES} )
+ #target_link_libraries(${PROJECT_NAME}_node  ${catkin_LIBRARIES} )
+ #target_link_libraries(${PROJECT_NAME}_change_tf_name  ${catkin_LIBRARIES} )
+ #target_link_libraries(${PROJECT_NAME}_tf_ar_tracker  ${catkin_LIBRARIES} )
  target_link_libraries(${PROJECT_NAME}_point  ${catkin_LIBRARIES} )
  target_link_libraries(${PROJECT_NAME}_odom_correct  ${catkin_LIBRARIES} )
  target_link_libraries(${PROJECT_NAME}_uav  ${catkin_LIBRARIES} libfuzzylite.so )
+ target_link_libraries(${PROJECT_NAME}_pose  ${catkin_LIBRARIES})
 
 #############
 ## Install ##
