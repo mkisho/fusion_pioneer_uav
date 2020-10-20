@@ -131,6 +131,15 @@ void odomDroneCallback(const nav_msgs::Odometry::ConstPtr& msg){
 }
 
 
+void odomRobotCallback(const nav_msgs::Odometry::ConstPtr& msg)
+{
+	tf::Pose poseOdom;
+	tf::poseMsgToTF(msg->pose.pose, poseOdom);
+	goal.x = poseOdom.getOrigin().getX();
+	goal.y = poseOdom.getOrigin().getY();
+	goal.z = poseOdom.getOrigin().getZ();
+
+}
 
 void goalCallback(const geometry_msgs::Point::ConstPtr& msg) // quando o subcallback estiver mensagem, ele vai entrar nesta funcao que rece as msg do tipo laser scan
 {     
@@ -339,7 +348,9 @@ int main(int argc, char **argv) {
 	pubCmd = n.advertise<geometry_msgs::Twist>("/bebop/cmd_vel", 1000);
 
 	ros::topic::waitForMessage<nav_msgs::Odometry>("/bebop/odometry/filtered");
-	ros::topic::waitForMessage<geometry_msgs::Point>("/goal");
+
+//	ros::topic::waitForMessage<geometry_msgs::Point>("/goal");
+	ros::Subscriber subOdomRobot = n.subscribe("/groundRobot/odom", 1000, odomRobotCallback);
 
 	init_fuzzy_hokuyo();
 	if (ros::ok()) {

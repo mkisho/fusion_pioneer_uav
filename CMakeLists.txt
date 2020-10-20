@@ -143,6 +143,7 @@ add_executable(${PROJECT_NAME}_point src/pointConverter.cpp)
 add_executable(${PROJECT_NAME}_uav src/uav.cpp)
 add_executable(${PROJECT_NAME}_odom_correct src/odom_correct.cpp)
 add_executable(${PROJECT_NAME}_pose src/pose_parametrization.cpp)
+add_executable(${PROJECT_NAME}_robot src/robot.cpp)
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
@@ -162,6 +163,8 @@ add_executable(${PROJECT_NAME}_pose src/pose_parametrization.cpp)
  target_link_libraries(${PROJECT_NAME}_odom_correct  ${catkin_LIBRARIES} )
  target_link_libraries(${PROJECT_NAME}_uav  ${catkin_LIBRARIES} libfuzzylite.so )
  target_link_libraries(${PROJECT_NAME}_pose  ${catkin_LIBRARIES})
+
+ target_link_libraries(${PROJECT_NAME}_robot  ${catkin_LIBRARIES} libfuzzylite.so)
 
 #############
 ## Install ##
